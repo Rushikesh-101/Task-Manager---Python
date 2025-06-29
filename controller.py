@@ -1,3 +1,55 @@
+import json
+import random 
+
+
+def returnToMenu():
+    Decision = input(" Do you want to return to main menu ( y/n ) ? ")
+
+    if Decision == "y" :
+        menu()
+
+    elif Decision == "n":
+        return
+ 
+
+
+
+def add_task():
+   
+    taskname = input("Enter task name : \n" )
+    # print(taskname)
+
+    ID = random.randint(1000 , 9999)
+    taskJson = {
+        "id" : ID,  
+        "task" : taskname,
+        "status" : "pending"
+    }
+
+        
+    try :
+
+        with open("tasks.json", "r") as fobject:
+            data = json.load(fobject)               # If task already exists this will look like -  <listOfDicts> [ {"task": "buy", "id": [2834], "status": "pending"} ]
+
+         
+
+    except FileNotFoundError:
+        data = []               # if task does not exist - creating empty list
+
+    data.append(taskJson)
+
+    with open("tasks.json", "w") as fobject:
+        json.dump(data, fobject)
+
+   
+    print("\n")
+    returnToMenu()
+
+
+
+
+
 # menu function based on match case format
 
 def menu():
@@ -10,10 +62,10 @@ def menu():
     
 
     
-    # match optionNumber:
+    match optionNumber:
 
-    #     case 1 :
-    #         add_task()
+        case 1 :
+            add_task()
 
     #     case 2 : 
     #         update_task()
@@ -30,7 +82,7 @@ def menu():
 
 
 def main():
-    print(" Task Manager - am pushing to main ")
+    print(" Task Manager  ")
     menu()
 
 if __name__ == "__main__":
