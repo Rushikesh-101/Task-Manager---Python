@@ -48,6 +48,17 @@ def add_task():
 
 
 
+def list_task():
+    
+    with open("tasks.json" , "r" ) as file:
+        y = json.load(file)
+
+    print(y)
+
+    print("\n")
+    returnToMenu()
+  
+
 
 
 # menu function based on match case format
@@ -73,8 +84,8 @@ def menu():
     #     case 3 :
     #         delete_task()
 
-    #     case 4 :
-    #         list_task()
+        case 4 :
+            list_task()
 
         # case _:
             # print("Please select an appropriate option ")
